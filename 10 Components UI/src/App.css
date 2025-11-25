@@ -1,0 +1,45 @@
+body {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+.box {
+  padding: 10px;
+  background-color: aqua;
+  margin-bottom: 20px;
+}
+.card {
+  background-color: lightseagreen;
+  border-radius: 10px;
+  padding: 40px;
+}
+.cards {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(1.05);
+}

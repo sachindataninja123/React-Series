@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "question": "Which of the following is the correct way to write a JavaScript array?",
+    "options": [
+      "var colors = (1:'red', 2:'green', 3:'blue')",
+      "var colors = ['red', 'green', 'blue']",
+      "var colors = 'red', 'green', 'blue'",
+      "var colors = {'red', 'green', 'blue'}"
+    ],
+    "answer": "var colors = ['red', 'green', 'blue']"
+  },
+  {
+    "id": 2,
+    "question": "Which company developed JavaScript?",
+    "options": [
+      "Netscape",
+      "Microsoft",
+      "Sun Microsystems",
+      "Oracle"
+    ],
+    "answer": "Netscape"
+  },
+  {
+    "id": 3,
+    "question": "Which symbol is used for comments in JavaScript?",
+    "options": [
+      "// for single-line, /* */ for multi-line",
+      "# for single-line, <!-- --> for multi-line",
+      "<!-- --> for comments",
+      "None of the above"
+    ],
+    "answer": "// for single-line, /* */ for multi-line"
+  },
+  {
+    "id": 4,
+    "question": "How do you write 'Hello World' in an alert box?",
+    "options": [
+      "msg('Hello World');",
+      "alertBox('Hello World');",
+      "alert('Hello World');",
+      "msgBox('Hello World');"
+    ],
+    "answer": "alert('Hello World');"
+  },
+  {
+    "id": 5,
+    "question": "Which of the following is NOT a JavaScript data type?",
+    "options": [
+      "Undefined",
+      "Number",
+      "Boolean",
+      "Float"
+    ],
+    "answer": "Float"
+  },
+  {
+    "id": 6,
+    "question": "How do you create a function in JavaScript?",
+    "options": [
+      "function:myFunction()",
+      "function myFunction()",
+      "create.myFunction()",
+      "def myFunction()"
+    ],
+    "answer": "function myFunction()"
+  },
+  {
+    "id": 7,
+    "question": "How can you add a comment in JavaScript?",
+    "options": [
+      "// This is a comment",
+      "/* This is a comment */",
+      "Both of the above",
+      "None of the above"
+    ],
+    "answer": "Both of the above"
+  },
+  {
+    "id": 8,
+    "question": "What is the output of typeof NaN in JavaScript?",
+    "options": [
+      "NaN",
+      "Object",
+      "Number",
+      "Undefined"
+    ],
+    "answer": "Number"
+  },
+  {
+    "id": 9,
+    "question": "Which method is used to convert JSON data to a JavaScript object?",
+    "options": [
+      "JSON.parse()",
+      "JSON.stringify()",
+      "JSON.convert()",
+      "JSON.toObject()"
+    ],
+    "answer": "JSON.parse()"
+  },
+  {
+    "id": 10,
+    "question": "Which operator is used to assign a value to a variable in JavaScript?",
+    "options": [
+      "-",
+      "*",
+      "=",
+      "=="
+    ],
+    "answer": "="
+  }
+]

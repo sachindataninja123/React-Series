@@ -1,0 +1,14 @@
+.card {
+  background-color: burlywood;
+  font-size: 50px;
+  border-radius: 10px;
+  color: #000;
+  padding: 10px 20px;
+}
+.card-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
