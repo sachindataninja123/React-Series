@@ -21,8 +21,15 @@ const App = () => {
   };
 
   const fetchData = async () => {
-    const response = await axios(
-      "https://69442b307dd335f4c35f8012.mockapi.io/users"
+    const response = await axios.get(
+      "https://69442b307dd335f4c35f8012.mockapi.io/users",
+      {
+        onDownloadProgress: (progress) => {
+          // console.log(progress)
+          const percent = (progress.loaded / progress.total) * 100;
+          // console.log(percent);
+        },
+      }
     );
     // console.log(response.data);
     setUsers(response.data);
@@ -33,11 +40,18 @@ const App = () => {
       alert("FILL ALL THE USERDETAILS!");
       return;
     }
-    const response = await axios({
-      url: "https://69442b307dd335f4c35f8012.mockapi.io/users",
-      method: "POST",
-      data: formDetails,
-    });
+
+    const response = await axios.post(
+      "https://69442b307dd335f4c35f8012.mockapi.io/users",
+      formDetails,
+      {
+        onUploadProgress: (progress) => {
+          // console.log(progress)
+          const percent = (progress.loaded / progress.total) * 100;
+          // console.log(percent);
+        },
+      }
+    );
     setFormDetails({
       name: "",
       age: "",
@@ -49,11 +63,10 @@ const App = () => {
   };
 
   const editData = async () => {
-    await axios({
-      url: `https://69442b307dd335f4c35f8012.mockapi.io/users/${formDetails.id}`,
-      method: "PUT",
-      data: formDetails,
-    });
+    await axios.put(
+      `https://69442b307dd335f4c35f8012.mockapi.io/users/${formDetails.id}`,
+      formDetails
+    );
     setFormDetails({
       name: "",
       age: "",
@@ -62,14 +75,25 @@ const App = () => {
   };
 
   const deleteUserData = async (id) => {
-    await axios({
-      url: `https://69442b307dd335f4c35f8012.mockapi.io/users/${id}`,
-      method: "DELETE",
-    });
+    await axios.delete(
+      `https://69442b307dd335f4c35f8012.mockapi.io/users/${id}`
+    );
     fetchData();
   };
 
   useEffect(() => {
+    axios.interceptors.request.use((config) => {
+      config.headers.Authorization = "Bearer ASDFGHJKLPORTUT";
+      // console.log(config.headers);
+      return config;
+    });
+
+    axios.interceptors.response.use((response) => {
+      response.status = 400;
+      // console.log(response);
+      return response;
+    });
+
     fetchData();
   }, []);
 
