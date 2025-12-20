@@ -1,0 +1,14 @@
+body{
+  background-color: #111;
+  color: #fff;
+}
+a{
+  transition: all linear 0.3s;
+}
+a:hover{
+  color: rgb(197, 64, 41);
+  scale: 0.95;
+}
+a:active{
+  scale: 0.8;
+}
