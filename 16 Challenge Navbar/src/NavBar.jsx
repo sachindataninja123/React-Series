@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
+import { CgProfile } from "react-icons/cg";
+import { IoSettings } from "react-icons/io5";
 
 const NavBar = () => {
   const [mobileView, setMobileView] = useState(false);
-  console.log(mobileView);
+  // console.log(mobileView);
 
   return (
     <div className="flex items-center p-5 justify-between bg-emerald-300 text-black font-bold ">
@@ -18,8 +20,8 @@ const NavBar = () => {
       </div>
 
       <div className="text-lg flex gap-4 items-center justify-center">
-        <span>♥️</span>
-        <span>♥️</span>
+        <span className="text-3xl"><IoSettings /></span>
+        <span className="text-3xl"><CgProfile /></span>
         <span
           onClick={() => {
             setMobileView(!mobileView);
