@@ -1,0 +1,4 @@
+const ADDTOCART = "ADD_TO_CART";
+const INCREMENT = "INCREMENT";
+
+export {ADDTOCART ,INCREMENT} 
