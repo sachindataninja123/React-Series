@@ -1,11 +1,22 @@
-import React from 'react'
+import React from "react";
+import { useMyContext } from "./MyContext";
 
 const D = () => {
+  const { setCount } = useMyContext();
+
   return (
     <div>
-      <h1 className='text-white text-3xl flex items-center justify-center  bg-green-800 p-8'>D</h1>
+      <h1 className="text-white text-3xl flex items-center justify-center flex-col  bg-green-800 p-8">
+        D
+        <button
+          className="text-lg bg-gray-500 text-black p-2 rounded-[5px] active:scale-95 cursor-pointer mt-5"
+          onClick={() => setCount((prev) => prev - 1)}
+        >
+          Decrement
+        </button>
+      </h1>
     </div>
-  )
-}
+  );
+};
 
-export default D
+export default D;
