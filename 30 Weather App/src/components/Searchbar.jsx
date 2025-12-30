@@ -1,13 +1,20 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { SetCity } from "../Store/Action/weatherAction";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWeather, SetCity } from "../Store/Action/weatherAction";
 
 const Searchbar = () => {
+  const city = useSelector((state) => state.weatherReducer.city);
+  // console.log(city)
+
   const dispatch = useDispatch();
 
   const handleClick = (e) => {
-    dispatch(SetCity(e.target.value))
-  }
+    dispatch(SetCity(e.target.value));
+  };
+
+  const handleSearchButton = () => {
+    dispatch(fetchWeather(city));
+  };
 
   return (
     <div className="join">
@@ -33,9 +40,12 @@ const Searchbar = () => {
           required
           placeholder="Search"
           onChange={handleClick}
+          value={city}
         />
       </label>
-      <button className="btn btn-accent join-item">Join</button>
+      <button onClick={handleSearchButton} className="btn btn-accent join-item">
+        Join
+      </button>
     </div>
   );
 };

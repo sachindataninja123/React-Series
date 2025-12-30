@@ -59,6 +59,8 @@ export const fetchWeather = (city) => {
 
       dispatch(fetchCurrentSuccess(currentWeatherDetails.data));
       dispatch(fetchForecastSuccess(forecastDetails.data.list));
+
+      console.log(currentWeatherDetails.data)
     } catch(error) {
         dispatch(fetchWeatherError('Something Went Wrong!'))
     }
