@@ -1,5 +1,4 @@
-import React from "react";
-import image1 from "../assets/1st .jpg";
+
 
 const HomeCard = ({ image, title }) => {
   return (
