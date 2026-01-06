@@ -25,9 +25,9 @@ const Counter = () => {
     dispatch(changeByValue(value));
   };
 
-  useEffect(() => {
-    console.log("Re-render hua hai");
-  });
+  // useEffect(() => {
+  //   console.log("Re-render hua hai");
+  // });
 
   return (
     <div>
