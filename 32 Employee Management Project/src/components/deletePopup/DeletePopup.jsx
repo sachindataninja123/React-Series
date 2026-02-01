@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeDeletePopup } from "../../redux/features/Popup/popupSlice";
+import { deleteEmployees } from "../../redux/features/employee/employeeThunk";
 
 const DeletePopup = () => {
   const dispatch = useDispatch();
@@ -8,6 +9,11 @@ const DeletePopup = () => {
   const popup = useSelector((state) => state.popup.deletePopup);
 
   if (!popup) return null;
+
+  const handleDeleteConfirmation = async () => {
+    await dispatch(deleteEmployees(popup));
+    dispatch(closeDeletePopup());
+  };
 
   return (
     <div
@@ -22,7 +28,12 @@ const DeletePopup = () => {
           <h2 className="card-title">Delete</h2>
           <p>Are you sure you want to delete this Employee Details?</p>
           <div className="card-actions justify-end mt-6">
-            <button className="btn btn-primary">Yes</button>
+            <button
+              onClick={handleDeleteConfirmation}
+              className="btn btn-primary"
+            >
+              Yes
+            </button>
 
             <button
               onClick={() => dispatch(closeDeletePopup())}

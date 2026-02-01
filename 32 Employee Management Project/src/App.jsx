@@ -6,6 +6,7 @@ import Employees from "./components/Employees/Employees";
 import DeletePopup from "./components/deletePopup/DeletePopup";
 import { useDispatch } from "react-redux";
 import { getEmployees } from "./redux/features/employee/employeeThunk";
+import HightlightPage from "./pages/HightlightPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const App = () => {
       <EmployeePopup />
       <DeletePopup />
       <Navbar />
+      <HightlightPage />
 
       <div className="flex-1">
         <Employees />

@@ -7,6 +7,7 @@ import {
   openDeletePopup,
   openEmployeePopup,
 } from "../../redux/features/Popup/popupSlice";
+import { updateEmployees } from "../../redux/features/employee/employeeThunk";
 
 const Employees = () => {
   const employeeDetails = useSelector((s) => s.employee.employees);
@@ -17,8 +18,14 @@ const Employees = () => {
       <Layout>
         <div>
           <ul className="list py-10 rounded-box shadow-md">
+            {employeeDetails.length === 0 && (
+              <p className="text-center text-5xl font-semibold">
+                No Employees Found
+              </p>
+            )}
+
             {employeeDetails.map((details) => {
-              return <EmployeesCard key={details.id}  details = {details}/>;
+              return <EmployeesCard key={details.id} details={details} />;
             })}
           </ul>
         </div>
@@ -27,9 +34,21 @@ const Employees = () => {
   );
 };
 
-const EmployeesCard = ({details}) => {
-
+const EmployeesCard = ({ details }) => {
   const dispatch = useDispatch();
+
+  const handleHighlight = (details) => {
+    console.log("kaam ho rha h na");
+    dispatch(
+      updateEmployees({
+        id: details.id,
+        details: {
+          ...details,
+          highlight: !details.highlight,
+        },
+      }),
+    );
+  };
 
   return (
     <div>
@@ -37,7 +56,7 @@ const EmployeesCard = ({details}) => {
         <div>
           <img
             className="size-10 rounded-box"
-            src={details.profileUrl}
+            src={details.profileUrl || "/avatar.png"}
           />
         </div>
         <div>
@@ -46,22 +65,23 @@ const EmployeesCard = ({details}) => {
             {details.email}
           </div>
         </div>
-        <p className="list-col-wrap text-xs">
-         {details.bio}
-        </p>
+        <p className="list-col-wrap text-xs">{details.bio}</p>
         <button
-          onClick={() => dispatch(openEmployeePopup())}
+          onClick={() => dispatch(openEmployeePopup(details))}
           className="btn btn-square btn-ghost"
         >
           <CiEdit className="text-xl" />
         </button>
         <button
-          onClick={() => dispatch(openDeletePopup())}
+          onClick={() => dispatch(openDeletePopup(details.id))}
           className="btn btn-square btn-ghost"
         >
           <MdAutoDelete className="text-xl" />
         </button>
-        <button className="btn btn-square btn-ghost">
+        <button
+          onClick={() => handleHighlight(details)}
+          className="btn btn-square btn-ghost"
+        >
           <svg
             className="size-[1.5em]"
             xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +91,7 @@ const EmployeesCard = ({details}) => {
               strokeLinejoin="round"
               strokeLinecap="round"
               strokeWidth="2"
-              fill="none"
+              fill={details.highlight ? "red" : "none"}
               stroke="currentColor"
             >
               <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>

@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeEmployeePopup } from "../../redux/features/Popup/popupSlice";
+import {
+  postEmployees,
+  updateEmployees,
+} from "../../redux/features/employee/employeeThunk";
 
 const EmployeePopup = () => {
   const dispatch = useDispatch();
@@ -15,8 +19,6 @@ const EmployeePopup = () => {
 
   const popup = useSelector((state) => state.popup.EmployeePopup);
 
-  if (!popup) return null;
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormDetails({
@@ -25,6 +27,41 @@ const EmployeePopup = () => {
     });
   };
 
+  const handleSubmit = async () => {
+    if (popup.id) {
+      await dispatch(
+        updateEmployees({
+          id: popup.id,
+          details: formDetails,
+        }),
+      );
+    } else {
+      await dispatch(postEmployees(formDetails));
+    }
+    dispatch(closeEmployeePopup());
+  };
+
+  useEffect(() => {
+    if (!popup) {
+      setFormDetails({
+        profileUrl: "",
+        name: "",
+        email: "",
+        bio: "",
+        highlight: false,
+      });
+    } else if (popup.id) {
+      setFormDetails({
+        profileUrl: popup.profileUrl,
+        name: popup.name,
+        email: popup.email,
+        bio: popup.bio,
+        highlight: false,
+      });
+    }
+  }, [popup]);
+
+  if (!popup) return null;
 
   return (
     <div
@@ -41,7 +78,9 @@ const EmployeePopup = () => {
         <input
           name="profileUrl"
           type="text"
+          required
           className="input"
+          value={formDetails.profileUrl}
           onChange={handleInputChange}
           placeholder="Profile url"
         />
@@ -50,6 +89,8 @@ const EmployeePopup = () => {
         <input
           name="name"
           type="text"
+          required
+          value={formDetails.name}
           onChange={handleInputChange}
           className="input"
           placeholder="Name"
@@ -59,6 +100,8 @@ const EmployeePopup = () => {
         <input
           name="email"
           type="email"
+          required
+          value={formDetails.email}
           onChange={handleInputChange}
           className="input"
           placeholder="Email"
@@ -67,12 +110,16 @@ const EmployeePopup = () => {
         <label className="label"> Bio</label>
         <textarea
           name="bio"
+          required
+          value={formDetails.bio}
           onChange={handleInputChange}
           className="textarea h-24"
           placeholder="Bio"
         ></textarea>
 
-        <button className="btn btn-neutral mt-4">Submit</button>
+        <button onClick={handleSubmit} className="btn btn-neutral mt-4">
+          Submit
+        </button>
       </fieldset>
     </div>
   );
