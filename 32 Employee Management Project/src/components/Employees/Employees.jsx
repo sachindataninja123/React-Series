@@ -2,21 +2,24 @@ import React from "react";
 import Layout from "../layout/Layout";
 import { CiEdit } from "react-icons/ci";
 import { MdAutoDelete } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  openDeletePopup,
+  openEmployeePopup,
+} from "../../redux/features/Popup/popupSlice";
 
 const Employees = () => {
+  const employeeDetails = useSelector((s) => s.employee.employees);
+  // console.log(employeeDetails)
+
   return (
     <div className="bg-base-100">
       <Layout>
         <div>
           <ul className="list py-10 rounded-box shadow-md">
-            <EmployeesCard />
-            <EmployeesCard />
-            <EmployeesCard />
-            <EmployeesCard />
-            <EmployeesCard />
-            <EmployeesCard /> <EmployeesCard />
-            <EmployeesCard />
-            <EmployeesCard />
+            {employeeDetails.map((details) => {
+              return <EmployeesCard key={details.id}  details = {details}/>;
+            })}
           </ul>
         </div>
       </Layout>
@@ -24,31 +27,38 @@ const Employees = () => {
   );
 };
 
-const EmployeesCard = () => {
+const EmployeesCard = ({details}) => {
+
+  const dispatch = useDispatch();
+
   return (
     <div>
       <li className="list-row">
         <div>
           <img
             className="size-10 rounded-box"
-            src="https://img.daisyui.com/images/profile/demo/1@94.webp"
+            src={details.profileUrl}
           />
         </div>
         <div>
-          <div>Dio Lupa</div>
+          <div>{details.name}</div>
           <div className="text-xs uppercase font-semibold opacity-60">
-            Remaining Reason
+            {details.email}
           </div>
         </div>
         <p className="list-col-wrap text-xs">
-          "Remaining Reason" became an instant hit, praised for its haunting
-          sound and emotional depth. A viral performance brought it widespread
-          recognition, making it one of Dio Lupa’s most iconic tracks.
+         {details.bio}
         </p>
-        <button className="btn btn-square btn-ghost">
+        <button
+          onClick={() => dispatch(openEmployeePopup())}
+          className="btn btn-square btn-ghost"
+        >
           <CiEdit className="text-xl" />
         </button>
-        <button className="btn btn-square btn-ghost">
+        <button
+          onClick={() => dispatch(openDeletePopup())}
+          className="btn btn-square btn-ghost"
+        >
           <MdAutoDelete className="text-xl" />
         </button>
         <button className="btn btn-square btn-ghost">
