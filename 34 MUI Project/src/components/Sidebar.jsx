@@ -39,16 +39,17 @@ export default function Sidebar() {
   };
 
   return (
-    <Box flex={1}>
-      <List
+    <Box
+      flex={1}
+      sx={{
+        display: { xs: "none", md: "block" },
+      }}
+    >
+      <Box position={'sticky'} top={60}>
+        <List
         sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
         component="nav"
         aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-            Nested List Items
-          </ListSubheader>
-        }
       >
         <ListItemButton>
           <ListItemIcon>
@@ -106,6 +107,7 @@ export default function Sidebar() {
           }}
         />
       </ListItem>
+      </Box>
     </Box>
   );
 }
