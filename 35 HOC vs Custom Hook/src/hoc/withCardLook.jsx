@@ -1,11 +1,11 @@
 import React from "react";
 
 const withCardLook = (WrappedComponent) => {
-  return () => {
+  return ({user}) => {
     return (
       <>
         <div className="bg-gray-700 p-10 rounded-2xl m-5">
-          <WrappedComponent />
+          <WrappedComponent {...user} />
         </div>
       </>
     );

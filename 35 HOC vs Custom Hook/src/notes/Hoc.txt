@@ -1,0 +1,27 @@
+import withCardLook from "./hoc/withCardLook";
+import Alpha from "./components/Alpha";
+import Beta from "./components/Beta";
+import withCardBorder from "./hoc/withCardBorder";
+
+// HOC means higher order Component 
+// it is used for complex logic & complex UI reuse
+
+const App = () => {
+  // const AlphaWithCardLook = withCardLook(Alpha);
+  // const BetaWithCardLook = withCardLook(Beta);
+
+  const AlphaWithBorder = withCardBorder(Alpha);
+  const BetaWithBorder = withCardBorder(Beta);
+
+  return (
+    <div className="text-white">
+      {/* <AlphaWithCardLook />
+      <BetaWithCardLook /> */}
+
+      <AlphaWithBorder user ='Sachin' />
+      <BetaWithBorder />
+    </div>
+  );
+};
+
+export default App;
