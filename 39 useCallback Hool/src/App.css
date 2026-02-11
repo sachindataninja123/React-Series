@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.child{
+  border: 1px solid white;
+  font-style: italic;
+}
